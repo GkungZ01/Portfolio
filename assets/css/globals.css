@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  max-width: 100%;
+  min-height: 100vh;
+  background: #1A1A1D;
+  color: #eeeef0;
+  cursor: none;
+}
+
+nav {
+  display: flex;
+  position: relative;
+  padding: 0.5rem 2rem;
+  justify-content: space-between;
+
+  > .title {
+    display: flex;
+    > span {
+      position: relative;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      align-self: center;
+      text-transform: uppercase;
+      user-select: none;
+    }
+  }
+
+  menu {
+    position: relative;
+    display: flex;
+    gap: 10px;
+
+    > a {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      border: none;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 20px;
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-duration: 400ms;
+      transition-property: color;
+
+      &:focus,
+      &:hover {
+        color: #eeeef0;
+      }
+
+      &:focus:after,
+      &:hover:after {
+        width: 100%;
+        left: 0%;
+      }
+
+      &:after {
+        content: "";
+        pointer-events: none;
+        bottom: -2px;
+        left: 50%;
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        background-color: #eeeef0;
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-duration: 400ms;
+        transition-property: width, left;
+      }
+    }
+  }
+}
+
+section {
+  position: relative;
+  height: 100vh;
+}
