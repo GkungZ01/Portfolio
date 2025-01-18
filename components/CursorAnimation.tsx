@@ -1,11 +1,13 @@
-"use client"
+"use client";
 
-import "@/assets/css/cursor_animation.css";
-import { useEffect } from "react"
+import css from "./CursorAnimation.module.css";
+import { useEffect, useRef } from "react";
 
 export default function Cursor_Animation() {
-  useEffect(()=> {
-    const cursor = document.querySelector<HTMLElement>(".cursor");
+  const cursorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const cursor = cursorRef.current;
 
     if (!cursor) {
       return;
@@ -49,11 +51,18 @@ export default function Cursor_Animation() {
     }
 
     animateCursor();
-  }, [])
+
+    return () => {
+      // ลบ event listeners เมื่อ component ถูก unmount
+      document.removeEventListener("mouseenter", () => {});
+      document.removeEventListener("mousemove", () => {});
+      document.removeEventListener("mouseout", () => {});
+    };
+  }, []);
 
   return (
     <>
-      <div className="cursor"></div>
+      <div ref={cursorRef} className={css.cursor}></div>
     </>
   );
-};
+}
