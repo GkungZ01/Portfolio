@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div className="relative w-full container mx-auto z-0">
-        <section className="flex justify-center items-center" id="home">
+        <section id="Home" className="flex justify-center items-center">
           <div className="md:w-[1200px] flex gap-4">
             <div className="inline-block select-none overflow-hidden rounded-full">
               <Image
@@ -21,11 +21,13 @@ export default function Home() {
             </div>
             <div>
               test
-              <Typed />
+              <Typed text="TEST|TEST2" />
             </div>
           </div>
         </section>
-        <section className="">Skill</section>
+        <section id="Skill" className="">
+          Skill
+        </section>
       </div>
     </>
   );

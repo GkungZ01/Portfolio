@@ -1,7 +1,8 @@
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import "@/styles/globals.css";
 import CursorAnimation from "@/components/CursorAnimation";
+import Navbar from "@/components/Navbar";
 import "next/font/google";
-import Link from "next/link";
 
 export const metadata = {
   title: "Portfolio",
@@ -13,24 +14,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <CursorAnimation />
-        <div className="absolute w-full z-10">
-          <nav>
-            <div className="title">
-              <span>Ratchanon Sila</span>
-            </div>
-            <menu>
-              <Link className="" href="/">
-                <p>Home</p>
-              </Link>
-              <Link className="" href="/">
-                <p>Skill</p>
-              </Link>
-              <Link className="" href="/">
-                <p>Skill</p>
-              </Link>
-            </menu>
-          </nav>
-        </div>
+        <Navbar/>
+        <div id='root'></div>
         {children}
       </body>
     </html>

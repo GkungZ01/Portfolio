@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import css from "./Typed.module.css";
 
-export default function Typed() {
+export default function Typed({text}: {text: string}) {
   const contentTypesRef = useRef<HTMLDivElement>(null);
   const cursorTypesRef = useRef<HTMLSpanElement>(null);
   const spanTypedRef = useRef<HTMLSpanElement>(null);
@@ -12,13 +12,11 @@ export default function Typed() {
     const spanTyped = spanTypedRef.current;
     if (!contentTypes) return;
 
-    const typedText = contentTypes.getAttribute("typed-text");
     const typedSpeed = contentTypes.getAttribute("typed-speed");
     const typedDeletingSpeed = contentTypes.getAttribute("typed-deleting-speed");
     const typedPauseBeforeDelete = contentTypes.getAttribute("typed-pause-before-delete");
     const typedPauseBetweenTexts = contentTypes.getAttribute("typed-pause-between-texts");
-    if (!typedText) return;
-    const texts = typedText.split("|");
+    const texts = text.split("|");
     const config = {
       typingSpeed: typedSpeed ? parseInt(typedSpeed) : 100,
       deletingSpeed: typedDeletingSpeed ? parseInt(typedDeletingSpeed) : 20,
@@ -59,13 +57,15 @@ export default function Typed() {
     }
 
     typeWriter();
-  }, []);
+  }, [text]);
   return (
     <>
-      <div ref={contentTypesRef} className="typed-content" typed-text="Test|Test2|Test3">
+      <div ref={contentTypesRef} className="typed-content">
         <p>
           <span ref={spanTypedRef}></span>
-          <span ref={cursorTypesRef} className={`${css.typedCursor} ${css.typedCursorBlink}`}>|</span>
+          <span ref={cursorTypesRef} className={`${css.typedCursor} ${css.typedCursorBlink}`}>
+            |
+          </span>
         </p>
       </div>
     </>
